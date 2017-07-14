@@ -1,0 +1,37 @@
+
+<link rel="import" href="../polymer-channels-card/polymer-channels-card.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="carls-first-card-composer">
+  <template>
+    <div>
+      <paper-button on-click="onSendClick" raised>Send</paper-button>
+    </div>
+  </template>
+  <script>
+    class CarlsFirstCardComposer extends PolymerChannelsCardComposer {
+      static get is() { return 'carls-first-card-composer'; }
+      // Add other script support needed to assemble the initialization data based on user interaction in the composer
+      onSendClick() {
+        this.send({ message:  "hello mars"});
+      }
+    }
+    window.customElements.define(CarlsFirstCardComposer.is, CarlsFirstCardComposer);
+  </script>
+</dom-module>
+
+<dom-module id="carls-first-card-viewer">
+  <template>
+    <div>
+      {{data.message}}
+    </div>
+  </template>
+  <script>
+    class CarlsFirstCardViewer extends PolymerChannelsCardViewer {
+      static get is() { return 'carls-first-card-viewer'; }
+      // Add other script support needed to display or for the participant to interact with the card,
+      // calling this.stateController when appropriate to share state changed with other participants.
+    }
+    window.customElements.define(CarlsFirstCardViewer.is, CarlsFirstCardViewer);
+  </script>
+</dom-module>
