@@ -159,10 +159,11 @@
         }
       }
       onItemCheckboxClick(event) {
+        event.model.item.checked = !event.model.item.checked;
         if (event.model.item.checked) {
-          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes - 1);
-        } else {
           this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes + 1);
+        } else {
+          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes - 1);
         }
       }
     }
