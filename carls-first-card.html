@@ -172,6 +172,7 @@
             this.stateController.arrayInsert("options", { option: text}).then(() => {
               this.$.entryText.value = '';
             });
+            console.log(this.channel);
             this.stateController.arrayInsert("votes",  {  id: text+this.channel.me.details.id, vote: false})
           }
         }
