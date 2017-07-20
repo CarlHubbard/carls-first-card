@@ -148,7 +148,7 @@
 
       getCheckboxIcon(option) {
         for (i=0; this.data.votes.length; i++)  {
-          if (this.data.votes[i].id == option + this.channel.me.details.id)  {
+          if (this.data.votes[i].id == option + this.channel.me.details.address)  {
           return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
           }
         }
@@ -173,15 +173,15 @@
               this.$.entryText.value = '';
             });
             console.log(this.channel);
-            this.stateController.arrayInsert("votes",  {  id: text+this.channel.me.details.id, vote: false})
+            this.stateController.arrayInsert("votes",  {  id: text+this.channel.me.details.address, vote: false})
           }
         }
       }
       onItemCheckboxClick(event) {
         for (n=0; this.data.votes.length; n++)  {
-          if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.id)  {
+          if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
             newVote = !this.data.votes[n].vote;
-            this.stateController.arrayElementUpdate('votes', event.model.item.option + this.channel.me.details.id, "vote", newVote );
+            this.stateController.arrayElementUpdate('votes', event.model.item.option + this.channel.me.details.address, "vote", newVote );
             break;
           }
         }
