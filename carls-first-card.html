@@ -148,7 +148,7 @@
 
       getCheckboxIcon(option) {
         for (i=0; this.data.votes.length; i++)  {
-          if (this.data.votes[i].id == option + this.channels.me.details.id)  {
+          if (this.data.votes[i].id == option + this.channel.me.details.id)  {
           return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
           }
         }
@@ -172,15 +172,15 @@
             this.stateController.arrayInsert("options", { option: text}).then(() => {
               this.$.entryText.value = '';
             });
-            this.stateController.arrayInsert("votes",  {  id: text+this.channels.me.details.id, vote: false})
+            this.stateController.arrayInsert("votes",  {  id: text+this.channel.me.details.id, vote: false})
           }
         }
       }
       onItemCheckboxClick(event) {
         for (n=0; this.data.votes.length; n++)  {
-          if (this.data.votes[n].id == event.model.item.option + this.channels.me.details.id)  {
+          if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.id)  {
             newVote = !this.data.votes[n].vote;
-            this.stateController.arrayElementUpdate('votes', event.model.item.option + this.channels.me.details.id, "vote", newVote );
+            this.stateController.arrayElementUpdate('votes', event.model.item.option + this.channel.me.details.id, "vote", newVote );
             break;
           }
         }
