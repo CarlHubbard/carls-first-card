@@ -64,7 +64,7 @@
       onSend() {
         const message = this.$.txt.value.trim();
         if (message.length > 0) {
-          this.send({ question: message, items: [] });
+          this.send({ question: message, options: [], votes: []  });
           this.$.txt.value = '';
         }
       }
