@@ -127,13 +127,13 @@
     <div class="container">
       <div class="question">{{data.question}}</div>
       <div class="innerContainer">
-        <template is="dom-repeat" items="{{data.items}}">
+        <template is="dom-repeat" items="{{data.options}}">
           <div class="listItem">
             <div class="checkContainer">
-              <iron-icon icon="[[getCheckboxIcon(item.checked)]]" on-click="onItemCheckboxClick"></iron-icon>
+              <iron-icon icon="[[getCheckboxIcon(item.option)]]" on-click="onItemCheckboxClick"></iron-icon>
             </div>
             <div class="messageContainer">{{item.option}}</div>
-            <div class="votesContainer">{{item.votes}}</div>
+            <div class="votesContainer">[[getTotalVotes(item.option)]]</div>
           </div>
         </template>
       </div>
@@ -145,25 +145,44 @@
   <script>
     class CarlsFirstCardViewer extends PolymerChannelsCardViewer {
       static get is() { return 'carls-first-card-viewer'; }
-      getCheckboxIcon(isChecked) {
-        return isChecked ? "icons:check" : "icons:check-box-outline-blank";
+
+      getCheckboxIcon(option) {
+        for (i=0; this.data.votes.length; i++)  {
+          if (this.data.votes[i].id == option + this.channels.me.details.id)  {
+          return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
+          }
+        }
       }
+
+      getTotalVotes(option) {
+        var totalVotes = 0;
+        for (j=0; this.data.votes.length; j++)  {
+          if (this.data.votes[j].id.includes(option) && this.data.votes[j].vote) {
+            totalVotes++;
+          }
+        }
+        return totalVotes;
+      }
+
+
       onEntryKeyDown(event) {
         if (event.keyCode === 13) {
           const text = this.$.entryText.value.trim();
           if (text.length > 0) {
-            this.stateController.arrayInsert("items", { option: text, votes: 0 }).then(() => {
+            this.stateController.arrayInsert("options", { option: text}).then(() => {
               this.$.entryText.value = '';
             });
+            this.stateController.arrayInsert("votes",  {  id: text+this.channels.me.details.id, vote: false})
           }
         }
       }
       onItemCheckboxClick(event) {
-        event.model.item.checked = !event.model.item.checked;
-        if (event.model.item.checked) {
-          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes + 1);
-        } else {
-          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes - 1);
+        for (n=0; this.data.votes.length; n++)  {
+          if (this.data.votes[n].id == event.model.item.option + this.channels.me.details.id)  {
+            newVote = !this.data.votes[n].vote;
+            this.stateController.arrayElementUpdate('votes', event.model.item.option + this.channels.me.details.id, "vote", newVote );
+            break;
+          }
         }
       }
     }
