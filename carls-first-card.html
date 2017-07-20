@@ -112,6 +112,7 @@
         vertical-align: top;
       }
       .votesContainer {
+        margin: 0 5px 0 0;
         vertical-align: top;
       }
       .entryContainer {
@@ -159,7 +160,11 @@
       }
       onItemCheckboxClick(event) {
         this.stateController.arrayElementUpdate('items', event.model.item.id, "checked", !event.model.item.checked );
-        this.stateController.arrayElementUpdate('items', event.model.item.id, "checked", event.model.item.votes + 1);
+        if (event.model.item.checked) {
+          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes + 1);
+        } else {
+          this.stateController.arrayElementUpdate('items', event.model.item.id, "votes", event.model.item.votes - 1);
+        }
       }
     }
     window.customElements.define(CarlsFirstCardViewer.is, CarlsFirstCardViewer);
