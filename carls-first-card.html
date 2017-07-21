@@ -193,6 +193,12 @@
           }
         }
       }
+      updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue) {
+        super.updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue);
+        if (path === 'votes') {
+          this.notifyPath('data.options');
+        }
+      }
     }
     window.customElements.define(CarlsFirstCardViewer.is, CarlsFirstCardViewer);
   </script>
