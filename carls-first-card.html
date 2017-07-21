@@ -148,15 +148,15 @@
 
       getCheckboxIcon(option) {
         let noVote = true;
-                console.log("UI just set this to true " + noVote);
+                console.log(option + "UI just set this to true " + noVote);
 
         for (let i=0; i < this.data.votes.length; i++)  {
           if (this.data.votes[i].id == option + this.channel.me.details.address)  {
             noVote = false;
-                        console.log("UI just set this to false because found a vote " + noVote);
+                        console.log(option + "UI just set this to false because found a vote " + noVote);
 
             return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
-                        console.log("UI just set the box based on " + this.data.votes[i].vote);
+                        console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
 
           }
         }
