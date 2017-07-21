@@ -147,12 +147,15 @@
       static get is() { return 'carls-first-card-viewer'; }
 
       getCheckboxIcon(option) {
+        let noVote = true;
         for (let i=0; i < this.data.votes.length; i++)  {
-          if ((this.data.votes[i].id == option + this.channel.me.details.address) && this.data.votes[i].vote)  {
-            return "icons:check";
-           }  else  {
-            return "icons:check-box-outline-blank";
+          if (this.data.votes[i].id == option + this.channel.me.details.address)  {
+            noVote = false;
+            return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
           }
+        }
+        if (noVote) {
+          return "icons:check-box-outline-blank";
         }
       }
 
@@ -192,7 +195,7 @@
           this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
         }
       }
-      
+
       updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue) {
         super.updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue);
         if (path === 'votes') {
