@@ -148,7 +148,7 @@
 
       getCheckboxIcon(option) {
         for (i=0; this.data.votes.length; i++)  {
-          if (this.data.votes[i].recordId == option + this.channel.me.details.address)  {
+          if (this.data.votes[i].id == option + this.channel.me.details.address)  {
           return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
           }
         }
@@ -157,7 +157,7 @@
       getTotalVotes(option) {
         var totalVotes = 0;
         for (j=0; this.data.votes.length; j++)  {
-          if (this.data.votes[j].recordId.includes(option) && this.data.votes[j].vote) {
+          if (this.data.votes[j].id.includes(option) && this.data.votes[j].vote) {
             totalVotes++;
           }
         }
@@ -173,7 +173,7 @@
               this.$.entryText.value = '';
             });
             console.log(this.channel);
-            this.stateController.arrayInsert("votes",  {  recordId: text+this.channel.me.details.address, vote: false})
+            this.stateController.arrayInsert("votes",  {  id: text+this.channel.me.details.address, vote: false})
           }
         }
       }
@@ -186,8 +186,8 @@
         //   }
         // }
         for (n=0; this.data.votes.length; n++)  {
-          if (this.data.votes[n].recordId == event.model.item.option + this.channel.me.details.address)  {
-            this.stateController.arrayElementUpdate('votes', this.data.votes[n].recordId, "vote", !this.data.votes[n].vote );
+          if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
+            this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", !this.data.votes[n].vote );
             break;
           }
         }
