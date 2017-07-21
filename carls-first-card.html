@@ -148,7 +148,7 @@
 
       getCheckboxIcon(option) {
         for (let i=0; i < this.data.votes.length; i++)  {
-          if (this.data.votes[i].id == option + this.channel.me.details.address && this.data.votes[i].vote)  {
+          if ((this.data.votes[i].id == option + this.channel.me.details.address) && this.data.votes[i].vote)  {
             return "icons:check";
            }  else  {
             return "icons:check-box-outline-blank";
