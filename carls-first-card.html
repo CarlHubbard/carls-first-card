@@ -127,7 +127,7 @@
     <div class="container">
       <div class="question">{{data.question}}</div>
       <div class="innerContainer">
-        <template is="dom-repeat" items="{{data.options}}">
+        <template is="dom-repeat" items="{{data.options}}" mutable-data>
           <div class="listItem">
             <div class="checkContainer">
               <iron-icon icon="[[getCheckboxIcon(item.option)]]" on-click="onItemCheckboxClick"></iron-icon>
