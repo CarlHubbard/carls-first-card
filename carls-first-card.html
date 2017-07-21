@@ -187,7 +187,8 @@
         // }
         for (let n=0; n < this.data.votes.length; n++)  {
           if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
-            this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", !this.data.votes[n].vote );
+            var newVote = !this.data.votes[n].vote
+            this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", newVote );
             break;
           }
         }
