@@ -148,14 +148,24 @@
 
       getCheckboxIcon(option) {
         let noVote = true;
+                console.log("UI just set this to true" + noVote);
+
         for (let i=0; i < this.data.votes.length; i++)  {
           if (this.data.votes[i].id == option + this.channel.me.details.address)  {
             noVote = false;
+                        console.log("UI just set this to false because found a vote" + noVote);
+
             return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
+                        console.log("UI just set the box based on " + this.data.votes[i].vote);
+
           }
         }
         if (noVote) {
+                        console.log("UI Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
+                        console.log("UI Or because there was no match");
           return "icons:check-box-outline-blank";
+                                  console.log("UI in either case just set the box to blank ");
+
         }
       }
 
@@ -183,16 +193,24 @@
 
       onItemCheckboxClick(event) {
         let noVote = true;
+        console.log("on click just set this to true" + noVote);
         for (let n=0; n < this.data.votes.length; n++)  {
           if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
             noVote = false;
+            console.log("on click just set this to false because found a vote" + noVote);
             var newVote = !this.data.votes[n].vote
             this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", newVote );
+                    console.log("Updated the vote to " + newVote);
+
             break;
           }
         }
         if (noVote)  {
+                        console.log("on click Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
+                        console.log("On click Or because there was no match");
           this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
+                                            console.log("on click in either case just added a true vote ");
+
         }
       }
 
