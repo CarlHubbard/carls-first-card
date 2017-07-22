@@ -157,6 +157,8 @@
 
             return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
                         console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
+                                                                    console.log("--------------------");
+
 
           }
         }
@@ -165,6 +167,8 @@
                         console.log(option + "UI Or because there was no match");
           return "icons:check-box-outline-blank";
                                   console.log(option + "UI in either case just set the box to blank ");
+                                                                              console.log("--------------------");
+
 
         }
       }
@@ -201,6 +205,8 @@
             var newVote = !this.data.votes[n].vote
             this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", newVote );
                     console.log(event.model.item.option + "on click Updated the vote to " + newVote);
+                                                                console.log("--------------------");
+
 
             break;
           }
@@ -210,12 +216,16 @@
                         console.log(event.model.item.option + "On click Or because there was no match");
           this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
                                             console.log(event.model.item.option + "on click in either case just added a true vote ");
+                                            console.log("--------------------");
 
         }
       }
 
       updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue) {
+                  console.log("In the updateRecord function")
+
         super.updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue);
+        console.log("path " + path);
         if (path === 'votes') {
           this.notifyPath('data.options');
           console.log("kicked the options array to update the template")
