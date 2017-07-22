@@ -148,28 +148,23 @@
 
       getCheckboxIcon(option) {
         let noVote = true;
-                console.log(option + "UI just set this to true " + noVote);
+          console.log(option + "UI just set this to true " + noVote);
 
         for (let i=0; i < this.data.votes.length; i++)  {
           if (this.data.votes[i].id == option + this.channel.me.details.address)  {
             noVote = false;
-                        console.log(option + "UI just set this to false because found a vote " + noVote);
-
+            console.log(option + "UI just set this to false because found a vote " + noVote);
+            console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
+            console.log("--------------------");
             return this.data.votes[i].vote ? "icons:check" : "icons:check-box-outline-blank";
-                        console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
-                                                                    console.log("--------------------");
-
-
           }
         }
         if (noVote) {
-                        console.log(option +"UI Got here because there are no votes at all becuse this is 0 " + this.data.votes.length);
-                        console.log(option + "UI Or because there was no match");
+          console.log(option +"UI Got here because there are no votes at all becuse this is 0 " + this.data.votes.length);
+          console.log(option + "UI Or because there was no match");
+          console.log(option + "UI in either case just set the box to blank ");
+          console.log("--------------------");
           return "icons:check-box-outline-blank";
-                                  console.log(option + "UI in either case just set the box to blank ");
-                                                                              console.log("--------------------");
-
-
         }
       }
 
@@ -204,31 +199,28 @@
             console.log(event.model.item.option + "on click just set this to false because found a vote" + noVote);
             var newVote = !this.data.votes[n].vote
             this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", newVote );
-                    console.log(event.model.item.option + "on click Updated the vote to " + newVote);
-                                                                console.log("--------------------");
-
-
+            console.log(event.model.item.option + "on click Updated the vote to " + newVote);
+            console.log("--------------------");
             break;
           }
         }
         if (noVote)  {
-                        console.log(event.model.item.option + "on click Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
-                        console.log(event.model.item.option + "On click Or because there was no match");
+          console.log(event.model.item.option + "on click Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
+          console.log(event.model.item.option + "On click Or because there was no match");
           this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
-                                            console.log(event.model.item.option + "on click in either case just added a true vote ");
-                                            console.log("--------------------");
-
+          console.log(event.model.item.option + "on click in either case just added a true vote ");
+          console.log("--------------------");
         }
       }
 
       updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue) {
-                  console.log("In the updateRecord function")
-
+        console.log("In the updateRecord function")
         super.updateRecord(path, recordId, index, updatedRecordValue, elementPath, elementValue);
         console.log("path " + path);
         if (path === 'votes') {
           this.notifyPath('data.options');
           console.log("kicked the options array to update the template")
+          console.log("--------------------");
         }
       }
     }
