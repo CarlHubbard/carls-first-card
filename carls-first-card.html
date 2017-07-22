@@ -223,6 +223,17 @@
           console.log("--------------------");
         }
       }
+
+      spliceArray(path, index, removeCount, record) {
+                console.log("In the splicedArray function")
+
+        super.splice(path, index, removeCount, record);
+        if (path === 'votes') {
+          this.notifyPath('data.options');
+          console.log("kicked the options array to update the template")
+          console.log("--------------------");
+        }
+      }
     }
     window.customElements.define(CarlsFirstCardViewer.is, CarlsFirstCardViewer);
   </script>
