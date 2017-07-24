@@ -170,11 +170,16 @@
 
       getTotalVotes(option) {
         var totalVotes = 0;
+        console.log("Getting total votes for this option: " + option);
+        console.log("Here's the full votes array: " + this.data.votes);
         for (let j=0; j < this.data.votes.length; j++)  {
+          console.log("the vote being compared: " + this.data.votes[j]);
           if (this.data.votes[j].id.includes(option) && this.data.votes[j].vote) {
+            console.log("Incrementing votes");
             totalVotes++;
           }
         }
+        console.log("----------------------");
         return totalVotes;
       }
 
@@ -197,6 +202,7 @@
           if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
             noVote = false;
             console.log(event.model.item.option + "on click just set this to false because found a vote" + noVote);
+            console.log("the vote was " + this.data.votes[n]);
             var newVote = !this.data.votes[n].vote
             this.stateController.arrayElementUpdate('votes', this.data.votes[n].id, "vote", newVote );
             console.log(event.model.item.option + "on click Updated the vote to " + newVote);
