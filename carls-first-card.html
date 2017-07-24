@@ -156,7 +156,7 @@
             console.log(option + "UI just set this to false because found a vote " + noVote);
             console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
             console.log("--------------------");
-            return this.data.votes[i].vote ? "icons: add-circle" : "icons: add-circle-outline";
+            return this.data.votes[i].vote ? "icons:add-circle" : "icons:add-circle-outline";
           }
         }
         if (noVote) {
@@ -164,7 +164,7 @@
           console.log(option + "UI Or because there was no match");
           console.log(option + "UI in either case just set the box to blank ");
           console.log("--------------------");
-          return "icons: add-circle-outline";
+          return "icons:add-circle-outline";
         }
       }
 
