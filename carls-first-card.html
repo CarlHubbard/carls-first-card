@@ -213,9 +213,10 @@
         if (noVote)  {
           console.log(event.model.item.option + "on click Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
           console.log(event.model.item.option + "On click Or because there was no match");
-          this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
           console.log(event.model.item.option + "on click in either case just added a true vote ");
+          console.log(event.model.item.option + "with this id: " + event.model.item.option + this.channel.me.details.address);
           console.log("--------------------");
+          this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
         }
       }
 
