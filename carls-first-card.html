@@ -151,7 +151,7 @@
           console.log(option + "UI just set this to true " + noVote);
 
         for (let i=0; i < this.data.votes.length; i++)  {
-          if (this.data.votes[i].id == option + this.channel.me.details.address)  {
+          if (this.data.votes[i].id == option + this.channel.me.identity.signature)  {
             noVote = false;
             console.log(option + "UI just set this to false because found a vote " + noVote);
             console.log(option + "UI just set the box based on " + this.data.votes[i].vote);
@@ -199,7 +199,7 @@
         let noVote = true;
         console.log(event.model.item.option + "on click just set this to true " + noVote);
         for (let n=0; n < this.data.votes.length; n++)  {
-          if (this.data.votes[n].id == event.model.item.option + this.channel.me.details.address)  {
+          if (this.data.votes[n].id == event.model.item.option + this.channel.me.identity.signature)  {
             noVote = false;
             console.log(event.model.item.option + "on click just set this to false because found a vote" + noVote);
             console.log("the vote was " + this.data.votes[n]);
@@ -214,9 +214,9 @@
           console.log(event.model.item.option + "on click Got here because there are no votes at all becuse this is 0" + this.data.votes.length);
           console.log(event.model.item.option + "On click Or because there was no match");
           console.log(event.model.item.option + "on click in either case just added a true vote ");
-          console.log(event.model.item.option + "with this id: " + event.model.item.option + this.channel.me.details.address);
+          console.log(event.model.item.option + "with this id: " + event.model.item.option + this.channel.me.identity.signature);
           console.log("--------------------");
-          this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.details.address, vote: true})
+          this.stateController.arrayInsert("votes", { id: event.model.item.option + this.channel.me.identity.signature, vote: true})
         }
       }
 
@@ -249,7 +249,7 @@
 
 
         // for (const vote of this.data.votes) {
-        //   if (vote.recordId == event.model.item.option + this.channel.me.details.address)  {
+        //   if (vote.recordId == event.model.item.option + this.channel.me.identity.signature)  {
         //     const newVote = vote.vote;
         //     this.stateController.arrayElementUpdate('votes', vote.recordId, "vote", newVote );
         //     break;            
